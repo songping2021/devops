@@ -1,0 +1,4 @@
+
+    include: 
+      - local: "$CI_COMMIT_REF_NAME/gitlab-ci.yml"
+    

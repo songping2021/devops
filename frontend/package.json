@@ -1,0 +1,26 @@
+{
+  "name": "cicd-pipeline-frontend",
+  "version": "1.0.0",
+  "description": "CI/CD流水线管理系统前端项目",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --host=0.0.0.0",
+    "build": "echo '前端项目无需构建，直接使用静态文件'",
+    "serve": "python -m http.server 3000",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "cicd",
+    "pipeline",
+    "devops",
+    "gitlab"
+  ],
+  "author": "CICD Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

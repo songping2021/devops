@@ -1,0 +1,777 @@
+/* 步骤导航样式 */
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    position: relative;
+    padding: 0 40px;
+}
+
+.steps::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background-color: #e8e8e8;
+    z-index: 1;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    padding: 0 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: #999;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.step.active .step-number {
+    background-color: #0066ff;
+    color: white;
+}
+
+.step-title {
+    color: #666;
+    font-size: 14px;
+    display: block;
+}
+
+.step.active .step-title {
+    color: #0066ff;
+}
+
+/* 表单区域样式 */
+.form-container {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.form-section {
+    display: none;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-section.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group input[type="time"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    border-color: #0066ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+}
+
+/* 流程编排样式 */
+.pipeline-tasks {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.task-item {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    padding: 4px 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.stage-list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.stage-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 4px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stage-item:hover {
+    background-color: #f0f7ff;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+.stage-item.active {
+    background-color: #e8f0fe;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+.stage-item.stage-disabled {
+    opacity: 0.5;
+    background-color: #f5f5f5;
+    border-color: #ccc;
+    color: #999;
+}
+
+.btn-add-stage {
+    background: none;
+    border: 1px dashed #ddd;
+    border-radius: 16px;
+    padding: 4px 16px;
+    color: #666;
+    cursor: pointer;
+}
+
+.btn-add-task {
+    width: 100%;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* 触发方式样式 */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    gap: 24px;
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.trigger-config {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* 成员信息样式 */
+.member-list {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-add-member {
+    margin-top: 16px;
+    width: 100%;
+    padding: 8px;
+    background: none;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* 按钮样式 */
+.btn-primary,
+.btn-secondary {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 10px;
+}
+
+.btn-primary {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0052cc;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background-color: #f5f5f5;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .steps {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .steps::before {
+        display: none;
+    }
+
+    .radio-group,
+    .checkbox-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 4px;
+    width: 500px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    line-height: 1;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* 添加任务模态框居中样式 */
+#taskModal {
+    justify-content: center;
+    align-items: center;
+}
+
+#taskModal.active {
+    display: flex;
+}
+
+#taskModal .modal-content {
+    width: 480px;
+    max-width: 90%;
+    margin: auto;
+}
+
+#taskModal .modal-body {
+    padding: 32px;
+}
+
+#taskModal .form-group {
+    margin-bottom: 24px;
+}
+
+#taskModal .form-group label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+#taskModal input,
+#taskModal select {
+    padding: 12px 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+#taskModal input:focus,
+#taskModal select:focus {
+    border-color: #0066ff;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    outline: none;
+}
+
+#taskModal .modal-footer {
+    padding: 24px 32px;
+    background: #fafafa;
+}
+
+/* 添加阶段模态框居中样式 */
+#stageModal {
+    justify-content: center;
+    align-items: center;
+}
+
+#stageModal.active {
+    display: flex;
+}
+
+#stageModal .modal-content {
+    width: 560px;
+    max-width: 90%;
+    margin: auto;
+}
+
+/* 阶段选择样式 */
+.stage-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.stage-option {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stage-option:hover {
+    border-color: #0066ff;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.stage-icon {
+    font-size: 26px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f7ff, #e8f0fe);
+    border-radius: 10px;
+    border: 1px solid #e1ecf4;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.stage-option:hover .stage-icon {
+    background: linear-gradient(135deg, #0066ff, #1890ff);
+    color: white;
+    transform: scale(1.05);
+}
+
+.stage-info {
+    flex: 1;
+}
+
+.stage-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+}
+
+.stage-option:hover .stage-info h4 {
+    color: #0066ff;
+}
+
+.stage-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.stage-option:hover .stage-info p {
+    color: #555;
+}
+
+/* 阶段配置样式 */
+.stage-config {
+    padding: 16px 0;
+}
+
+/* 错误状态样式 */
+.error {
+    border-color: #ff4d4f !important;
+}
+
+.error-message {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.task-type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: #e8f0fe;
+    color: #1a73e8;
+}
+
+.task-title {
+    display: inline-block;
+}
+
+.task-info h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.task-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 底部按钮区域样式 */
+.bottom-actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.bottom-actions .btn-primary {
+    min-width: 100px;
+}
+
+/* 确保内容区域不被固定按钮遮挡 */
+.content {
+    padding-bottom: 80px;
+}
+
+.btn-delete-stage {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ff4d4f;
+    padding: 4px 8px;
+    transition: all 0.3s;
+}
+
+.btn-delete-stage:hover {
+    color: #ff7875;
+} 
+
+/* 增加默认值输入框的样式 */
+.input-with-default::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* 侧边栏配置面板样式 */
+.sidebar-config {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 450px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1100;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+}
+
+.sidebar-config.active {
+    right: 0;
+}
+
+.sidebar-config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #f9f9f9;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.sidebar-config-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    flex: 1;
+    text-align: center;
+}
+
+.stage-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.stage-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.stage-toggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #1890ff;
+}
+
+.stage-toggle .toggle-text {
+    cursor: pointer;
+    user-select: none;
+}
+
+.sidebar-config-body {
+    padding: 20px;
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+    display: none;
+}
+
+.sidebar-backdrop.active {
+    display: block;
+}
+
+/* 复选框样式 */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  accent-color: #1890ff;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* 资源限制样式 */
+.resource-limit {
+  margin-top: 20px;
+  background-color: #e6f7ff;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.section-title {
+  color: #333;
+  font-size: 16px;
+  margin: 0 0 15px 0;
+  font-weight: 500;
+}
+
+.resource-inputs {
+  display: flex;
+  gap: 20px;
+}
+
+.resource-item {
+  flex: 1;
+}
+
+.resource-item label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: normal;
+}
+
+.input-with-unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.input-with-unit:focus-within {
+  border-color: #0066ff;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+}
+
+.input-with-unit input {
+  flex: 1;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  width: calc(100% - 40px);
+}
+
+.input-with-unit .unit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background-color: #f5f7fa;
+  color: #606266;
+  height: 100%;
+  min-width: 40px;
+  border-left: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* 修改number输入框箭头样式 */
+.input-with-unit input[type="number"]::-webkit-inner-spin-button,
+.input-with-unit input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  height: 20px;
+  margin-right: 5px;
+}
+
+/* 侧边栏底部按钮区域 */
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}

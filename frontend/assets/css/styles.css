@@ -1,0 +1,255 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* 容器布局 */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 200px;
+    background-color: #0066ff;
+    color: white;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.sidebar nav li:hover,
+.sidebar nav li.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .icon {
+    margin-right: 10px;
+}
+
+/* 主内容区域样式 */
+.main-content {
+    flex: 1;
+    background-color: #fff;
+}
+
+/* 顶部导航 */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.breadcrumb {
+    color: #666;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+/* 内容区域 */
+.content {
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* 筛选区域 */
+.filter-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-item label {
+    color: #666;
+}
+
+.filter-item select {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.filter-item input[type="text"] {
+    width: 200px;
+    height: 32px;
+    padding: 4px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filter-item input[type="text"]:focus {
+    border-color: #1890ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.filter-item input[type="text"]::placeholder {
+    color: #bfbfbf;
+}
+
+/* 按钮样式 */
+button {
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-search {
+    background-color: #0066ff;
+    color: white;
+}
+
+.btn-reset {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.btn-primary {
+    background-color: #0066ff;
+    color: white;
+}
+
+/* 列表区域 */
+.pipeline-list {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: normal;
+    color: #666;
+}
+
+/* 操作按钮样式 */
+.btn-execute,
+.btn-edit,
+.btn-delete {
+    padding: 4px 12px;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.btn-execute {
+    background-color: #0066ff;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.btn-delete {
+    background-color: #fff;
+    border: 1px solid #ff4d4f;
+    color: #ff4d4f;
+}
+
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.page-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-btn {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.page-number {
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.page-number.active {
+    background-color: #0066ff;
+    color: white;
+} 

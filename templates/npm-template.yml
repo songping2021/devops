@@ -1,0 +1,26 @@
+include:
+  - project: templates/cicd-templates
+    file: ".npm-template.yml"
+
+variables:
+  compile: "off"  
+  NODEVERSION: "14.18"  
+  PNPMVERSION: "7.33.7"  
+  CODEPATH: ""  
+  BUILDCMD: "pnpm run build"  
+  NPMDIR: "dist"    
+  build: "off"  
+  HARBORNAME: "devops"  
+  BUILDDIR: "."  
+  INGRESS: "yes"  
+  PLATFORM: "linux/amd64"     
+  deploy: "off"  
+  NAMESPACE: "app-dev"  
+  CTPORT: 80  
+  SERVICENAME: "$CI_PROJECT_NAME"  
+  K8S: "K8S_cmdicncf_jkyw"  
+  REQUESTSCPU: "100m"  
+  REQUESTSMEM: "128Mi"  
+  LIMITSCPU: "500m"  
+  LIMITSMEM: "256Mi"  
+

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新建流水线 - CI/CD流水线管理系统</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/pipeline-edit.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <div class="logo">DevOps</div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="index.html"><span class="icon">📊</span>流水线</a></li>
+                    <li><a href="#"><span class="icon">📋</span>模板</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 主要内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航 -->
+            <div class="top-nav">
+                <div class="breadcrumb">流水线 / 新建流水线</div>
+                <div class="user-info">
+                    <span class="username">管理员</span>
+                </div>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="content">
+                <h1>新建流水线</h1>
+                
+                <!-- 步骤导航 -->
+                <div class="steps">
+                    <div class="step active clickable" data-step="basic" data-section="basicInfo">
+                        <span class="step-number">1</span>
+                        <span class="step-title">基本信息</span>
+                    </div>
+                    <div class="step clickable" data-step="pipeline" data-section="pipelineConfig">
+                        <span class="step-number">2</span>
+                        <span class="step-title">流程编排</span>
+                    </div>
+                    <div class="step clickable" data-step="trigger" data-section="triggerConfig">
+                        <span class="step-number">3</span>
+                        <span class="step-title">触发方式</span>
+                    </div>
+                    <div class="step clickable" data-step="member" data-section="memberInfo">
+                        <span class="step-number">4</span>
+                        <span class="step-title">成员信息</span>
+                    </div>
+                </div>
+
+                <!-- 表单区域 -->
+                <div class="form-container">
+                    <!-- 基本信息 -->
+                    <div class="form-section active" id="basicInfo">
+                        <div class="form-group">
+                            <label>项目ID</label>
+                            <input type="text" id="projectId" placeholder="请输入项目ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label>关联分支</label>
+                            <input type="text" id="branch" placeholder="请输入分支名称" value="develop" required>
+                        </div>
+                    </div>
+
+                    <!-- 流程编排 -->
+                    <div class="form-section" id="pipelineConfig">
+                        <div class="pipeline-tasks">
+                            <div class="task-list">
+                            </div>
+                            <button class="btn-add-task">+ 添加任务</button>
+                        </div>
+                    </div>
+
+                    <!-- 触发方式 -->
+                    <div class="form-section" id="triggerConfig">
+                        <div class="trigger-options">
+                            <div class="form-group">
+                                <label>触发方式</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="triggerType" value="manual" checked>
+                                        <span>手动触发</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="triggerType" value="auto">
+                                        <span>自动触发</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="triggerType" value="schedule">
+                                        <span>定时触发</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 自动触发配置 -->
+                            <div class="trigger-config" id="autoTriggerConfig" style="display: none;">
+                                <div class="form-group">
+                                    <label>触发事件</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="triggerEvent" value="push">
+                                            <span>代码推送</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="triggerEvent" value="pr">
+                                            <span>合并请求</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 定时触发配置 -->
+                            <div class="trigger-config" id="scheduleTriggerConfig" style="display: none;">
+                                <div class="form-group">
+                                    <label>执行周期</label>
+                                    <select id="scheduleType">
+                                        <option value="daily">每天</option>
+                                        <option value="weekly">每周</option>
+                                        <option value="monthly">每月</option>
+                                        <option value="custom">自定义</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>执行时间</label>
+                                    <input type="time" id="scheduleTime">
+                                </div>
+                                <div class="form-group" id="cronExpression" style="display: none;">
+                                    <label>Cron表达式</label>
+                                    <input type="text" placeholder="请输入Cron表达式">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 成员信息 -->
+                    <div class="form-section" id="memberInfo">
+                        <div class="form-group">
+                            <label>管理成员</label>
+                            <div class="member-list">
+                                <div class="member-item">
+                                    <span>管理员</span>
+                                    <span>所有权限</span>
+                                </div>
+                                <button class="btn-add-member">+ 添加成员</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 部署阶段配置 -->
+                    <div class="form-section" id="deployConfig" style="display: none;">
+                        <div class="form-group">
+                            <label>命名空间</label>
+                            <input type="text" placeholder="请输入命名空间">
+                        </div>
+                        <div class="form-group">
+                            <label>服务名</label>
+                            <input type="text" placeholder="请输入服务名" value="$CI_PROJECT_NAME">
+                        </div>
+                        <div class="form-group">
+                            <label>应用端口</label>
+                            <input type="text" placeholder="请输入应用端口" value="80">
+                        </div>
+                        <div class="form-group">
+                            <label>发布集群</label>
+                            <select>
+                                <option value="K8S_cmdicncf_jkyw">K8S_cmdicncf_jkyw</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="enableIngressConfig" checked>
+                                <label for="enableIngressConfig">启用Ingress</label>
+                            </div>
+                        </div>
+                        
+                        <!-- 资源限制 -->
+                        <div class="resource-limit">
+                            <h4 class="section-title">资源限制</h4>
+                            <div class="resource-inputs">
+                                <div class="resource-item">
+                                    <label>CPU</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                        <span class="unit">C</span>
+                                    </div>
+                                </div>
+                                <div class="resource-item">
+                                    <label>内存</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                        <span class="unit">G</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部按钮区域 -->
+            <div class="bottom-actions">
+                <button class="btn-primary" id="submitForm">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加任务对话框 -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加任务</h3>
+                <button class="btn-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>任务名称</label>
+                    <input type="text" id="taskName" placeholder="请输入任务名称">
+                </div>
+                <div class="form-group">
+                    <label>任务类型</label>
+                    <select id="taskType">
+                        <option value="">请选择任务类型</option>
+                        <option value="maven">Maven打包发布</option>
+                        <option value="npm">NPM打包发布</option>
+                        <option value="scan">代码扫描</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelTask">取消</button>
+                <button class="btn-primary" id="confirmTask">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加阶段对话框 -->
+    <div class="modal" id="stageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>选择阶段</h3>
+                <button class="btn-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="stage-options">
+                    <div class="stage-option" data-stage="compile">
+                        <div class="stage-icon">📦</div>
+                        <div class="stage-info">
+                            <h4>编译</h4>
+                            <p>配置编译环境和参数</p>
+                        </div>
+                    </div>
+                    <div class="stage-option" data-stage="build">
+                        <div class="stage-icon">🔨</div>
+                        <div class="stage-info">
+                            <h4>构建</h4>
+                            <p>配置构建命令和打包</p>
+                        </div>
+                    </div>
+                    <div class="stage-option" data-stage="deploy">
+                        <div class="stage-icon">🚀</div>
+                        <div class="stage-info">
+                            <h4>部署</h4>
+                            <p>配置部署环境和方式</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阶段配置对话框 -->
+    <div class="modal" id="stageConfigModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="stageConfigTitle">阶段配置</h3>
+                <button class="btn-delete-stage">❌</button>
+            </div>
+            <div class="modal-body">
+                <!-- 编译阶段配置 -->
+                <div class="stage-config" id="compileConfig" style="display: none;">
+                    <div class="form-group">
+                        <label>Maven版本</label>
+                        <select>
+                            <option value="3.8.1">3.8.1</option>
+                            <option value="3.6.3">3.6.3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>JDK版本</label>
+                        <select>
+                            <option value="11">JDK 11</option>
+                            <option value="8">JDK 8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>代码路径</label>
+                        <input type="text" placeholder="请输入代码路径">
+                    </div>
+                    <div class="form-group">
+                        <label>制品路径</label>
+                        <input type="text" placeholder="请输入制品路径">
+                    </div>
+                    <div class="form-group">
+                        <label>制品格式</label>
+                        <select>
+                            <option value="jar">jar</option>
+                            <option value="war">war</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>编译命令</label>
+                        <input type="text" placeholder="mvn clean package -Dmaven.test.skip=true -U" class="input-with-default">
+                    </div>
+                </div>
+
+                <!-- NPM编译阶段配置 -->
+                <div class="stage-config" id="npmCompileConfig" style="display: none;">
+                    <div class="form-group">
+                        <label>Node.js版本</label>
+                        <select>
+                            <option value="14.18">14.18</option>
+                            <option value="16">16</option>
+                            <option value="18">18</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>pnpm版本</label>
+                        <select>
+                            <option value="7.33.7">7.33.7</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>代码路径</label>
+                        <input type="text" placeholder="请输入代码路径" value=".">
+                    </div>
+                    <div class="form-group">
+                        <label>制品发布目录</label>
+                        <input type="text" placeholder="请输入制品发布目录" value="dist">
+                    </div>
+                    <div class="form-group">
+                        <label>编译命令</label>
+                        <input type="text" placeholder="pnpm run build" value="pnpm run build" class="input-with-default">
+                    </div>
+                </div>
+
+                <!-- 构建阶段配置 -->
+                <div class="stage-config" id="buildConfig" style="display: none;">
+                    <div class="form-group">
+                        <label>镜像仓库名称</label>
+                        <input type="text" placeholder="请输入镜像仓库名称">
+                    </div>
+                    <div class="form-group">
+                        <label>Dockerfile路径</label>
+                        <input type="text" placeholder="请输入Dockerfile路径">
+                    </div>
+                    <div class="form-group">
+                        <label>镜像架构</label>
+                        <select>
+                            <option value="amd64">amd64</option>
+                            <option value="arm64">arm64</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 部署阶段配置 -->
+                <div class="stage-config" id="deployConfig" style="display: none;">
+                    <div class="form-group">
+                        <label>命名空间</label>
+                        <input type="text" placeholder="请输入命名空间">
+                    </div>
+                    <div class="form-group">
+                        <label>服务名</label>
+                        <input type="text" placeholder="请输入服务名" value="$CI_PROJECT_NAME">
+                    </div>
+                    <div class="form-group">
+                        <label>应用端口</label>
+                        <input type="text" placeholder="请输入应用端口" value="80">
+                    </div>
+                    <div class="form-group">
+                        <label>发布集群</label>
+                        <select>
+                            <option value="K8S_cmdicncf_jkyw">K8S_cmdicncf_jkyw</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="enableIngressConfig" checked>
+                            <label for="enableIngressConfig">启用Ingress</label>
+                        </div>
+                    </div>
+                    
+                    <!-- 资源限制 -->
+                    <div class="resource-limit">
+                        <h4 class="section-title">资源限制</h4>
+                        <div class="resource-inputs">
+                            <div class="resource-item">
+                                <label>CPU</label>
+                                <div class="input-with-unit">
+                                    <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                    <span class="unit">核</span>
+                                </div>
+                            </div>
+                            <div class="resource-item">
+                                <label>内存</label>
+                                <div class="input-with-unit">
+                                    <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                    <span class="unit">G</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelStageConfig">取消</button>
+                <button class="btn-primary" id="confirmStageConfig">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 侧边栏阶段配置面板 -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <div class="sidebar-config" id="sidebarStageConfig">
+        <div class="sidebar-config-header">
+            <h3 id="sidebarStageTitle">阶段配置</h3>
+            <div class="stage-controls">
+                <label class="stage-toggle">
+                    <input type="checkbox" id="stageEnabledToggle">
+                    <span class="toggle-text">启用阶段</span>
+                </label>
+                <button class="btn-icon btn-delete-stage" title="删除阶段">🗑️</button>
+            </div>
+        </div>
+        <div class="sidebar-config-body">
+            <!-- 编译阶段配置 -->
+            <div class="stage-config" id="sidebarCompileConfig" style="display: none;">
+                <div class="form-group">
+                    <label>Maven版本</label>
+                    <select>
+                        <option value="3.8.1">3.8.1</option>
+                        <option value="3.6.3">3.6.3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>JDK版本</label>
+                    <select>
+                        <option value="11">JDK 11</option>
+                        <option value="8">JDK 8</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>代码路径</label>
+                    <input type="text" placeholder="请输入代码路径，默认为根目录(.)" value=".">
+                </div>
+                <div class="form-group">
+                    <label>制品路径</label>
+                    <input type="text" placeholder="请输入制品路径，如 target/*.jar" value="target/*.jar">
+                </div>
+                <div class="form-group">
+                    <label>制品格式</label>
+                    <select>
+                        <option value="jar">jar</option>
+                        <option value="war">war</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>编译命令</label>
+                    <input type="text" placeholder="mvn clean package -Dmaven.test.skip=true -U" class="input-with-default">
+                </div>
+            </div>
+
+            <!-- NPM编译阶段配置 -->
+            <div class="stage-config" id="sidebarNpmCompileConfig" style="display: none;">
+                <div class="form-group">
+                    <label>Node.js版本</label>
+                    <select>
+                        <option value="14.18">14.18</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>pnpm版本</label>
+                    <select>
+                        <option value="7.33.7">7.33.7</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>代码路径</label>
+                    <input type="text" placeholder="请输入代码路径" value=".">
+                </div>
+                <div class="form-group">
+                    <label>制品发布目录</label>
+                    <input type="text" placeholder="请输入制品发布目录" value="dist">
+                </div>
+                <div class="form-group">
+                    <label>编译命令</label>
+                    <input type="text" placeholder="pnpm run build" value="pnpm run build" class="input-with-default">
+                </div>
+            </div>
+
+            <!-- 构建阶段配置 -->
+            <div class="stage-config" id="sidebarBuildConfig" style="display: none;">
+                <div class="form-group">
+                    <label>镜像仓库名称</label>
+                    <input type="text" placeholder="请输入镜像仓库名称，如 harbor.example.com/project/app" value="harbor.example.com/project/app">
+                </div>
+                <div class="form-group">
+                    <label>Dockerfile路径</label>
+                    <input type="text" placeholder="请输入Dockerfile路径，默认为 ./Dockerfile" value="./Dockerfile">
+                </div>
+                <div class="form-group">
+                    <label>镜像架构</label>
+                    <select>
+                        <option value="amd64">amd64</option>
+                        <option value="arm64">arm64</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 部署阶段配置 -->
+            <div class="stage-config" id="sidebarDeployConfig" style="display: none;">
+                <div class="form-group">
+                    <label>命名空间</label>
+                    <input type="text" placeholder="请输入命名空间，默认为 default" value="default">
+                </div>
+                <div class="form-group">
+                    <label>服务名</label>
+                    <input type="text" placeholder="请输入服务名" value="$CI_PROJECT_NAME">
+                </div>
+                <div class="form-group">
+                    <label>应用端口</label>
+                    <input type="text" placeholder="请输入应用端口" value="80">
+                </div>
+                <div class="form-group">
+                    <label>发布集群</label>
+                    <select>
+                        <option value="K8S_cmdicncf_jkyw">K8S_cmdicncf_jkyw</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="enableIngressSidebar" checked>
+                        <label for="enableIngressSidebar">启用Ingress</label>
+                    </div>
+                </div>
+                
+                <!-- 资源限制 -->
+                <div class="resource-limit">
+                    <h4 class="section-title">资源限制</h4>
+                    <div class="resource-inputs">
+                        <div class="resource-item">
+                            <label>CPU</label>
+                            <div class="input-with-unit">
+                                <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                <span class="unit">核</span>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <label>内存</label>
+                            <div class="input-with-unit">
+                                <input type="number" min="1" step="1" placeholder="请输入" value="1">
+                                <span class="unit">G</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 底部按钮区域 -->
+            <div class="sidebar-footer">
+                <button class="btn-secondary" id="cancelSidebarConfig">取消</button>
+                <button class="btn-primary" id="saveSidebarConfig">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入模块化JS文件 -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/task-config-api.js"></script>
+    <script src="assets/js/task-manager.js"></script>
+    <script src="assets/js/stage-manager.js"></script>
+    <script src="assets/js/pipeline-loader.js"></script>
+    <script src="assets/js/form-manager.js"></script>
+    <script src="assets/js/pipeline-edit-main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD流水线管理系统</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <div class="logo">DevOps</div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#"><span class="icon">📊</span>流水线</a></li>
+                    <li><a href="#"><span class="icon">📋</span>模板</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 主要内容区 -->
+        <div class="main-content">
+            <!-- 顶部导航 -->
+            <div class="top-nav">
+                <div class="breadcrumb">流水线 / 流水线管理</div>
+                <div class="user-info">
+                    <span class="username">管理员</span>
+                </div>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="content">
+                <h1>流水线管理</h1>
+                
+                <!-- 搜索筛选区 -->
+                <div class="filter-section">
+                    <div class="filter-item">
+                        <label>项目ID</label>
+                        <input type="text" id="projectId" placeholder="请输入项目ID">
+                    </div>
+                    <button class="btn-search">查询</button>
+                    <button class="btn-reset">重置</button>
+                </div>
+
+                <!-- 流水线列表 -->
+                <div class="pipeline-list">
+                    <div class="list-header">
+                        <h2>流水线列表</h2>
+                        <button class="btn-primary" id="newPipeline">+ 新建</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>项目id</th>
+                                <th>关联分支</th>
+                                <th>任务</th>
+                                <th>阶段</th>
+                                <th>更新时间</th>
+                                <th>更新人</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pipelineTableBody">
+                            <!-- 表格内容将通过JavaScript动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <span>共 4 条记录</span>
+                    <div class="page-controls">
+                        <button class="page-btn">上一页</button>
+                        <span class="page-number active">1</span>
+                        <button class="page-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 加载配置文件 -->
+    <script src="assets/js/config.js"></script>
+    <!-- 加载主应用文件 -->
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html> 

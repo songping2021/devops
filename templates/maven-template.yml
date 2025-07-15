@@ -1,0 +1,33 @@
+include:
+  - project: templates/cicd-templates
+    file: ".maven-template.yml"
+
+variables:
+  compile: "on"
+  #JDK版本
+  JDKVERSION: "8"
+  #产物格式
+  BUILDFORMAT: jar
+  #代码路径
+  CODEPATH: ""
+  #产物路径
+  TARGETDIR: "app1/target"
+  #编译命令
+  BUILDCMD: "mvn clean package -Dmaven.test.skip=true -U"
+  build: "on"
+  #harbor项目名称
+  HARBORNAME: "devops"
+  #Dockerfile路径
+  BUILDDIR: "app1"
+  #镜像架构
+  PLATFORM: "linux/amd64"
+  #服务名
+  SERVICENAME: "app1"
+  deploy: "on"
+  #命名空间
+  NAMESPACE: "app-dev"
+  #端口
+  CTPORT: 80
+  INGRESS: "yes"
+  LIMITSCPU: "1000m"
+  LIMITSMEM: "1024Mi"
